@@ -15,6 +15,7 @@
     <description>Projeto para consumo de api pública</description>
     <properties>
         <java.version>17</java.version>
+        <start-class>com.cnpj.alfa.AlfaApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -44,6 +45,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.cnpj.alfa.AlfaApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

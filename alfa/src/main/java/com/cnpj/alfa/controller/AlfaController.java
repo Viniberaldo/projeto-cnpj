@@ -31,7 +31,7 @@ public class AlfaController {
      * @return
      */
     @GetMapping("/api-data/{cnpj}")
-    public String getApiData(@PathVariable int cnpj) throws
+    public String getApiData(@PathVariable String cnpj) throws
             JsonProcessingException {
         JsonNode data = alfaService.getApiData(cnpj);
         String razaoSocial = data.path("razao_social").asText();

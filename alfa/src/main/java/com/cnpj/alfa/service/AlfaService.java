@@ -24,7 +24,7 @@ public class AlfaService {
      * @param cnpj
      * @return
      */
-    public JsonNode getApiData(int cnpj) throws JsonProcessingException {
+    public JsonNode getApiData(String cnpj) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         String data = restTemplate.getForObject(BRASIL_API_CNPJ_URL,
                 String.class, cnpj);
