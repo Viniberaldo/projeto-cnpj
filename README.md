@@ -1,2 +1,2 @@
 # projeto-cnpj
-Projeto para estudo de integração entre frontend, backend e containers.
+Projeto para exercício de integração entre frontend, backend e containers.
