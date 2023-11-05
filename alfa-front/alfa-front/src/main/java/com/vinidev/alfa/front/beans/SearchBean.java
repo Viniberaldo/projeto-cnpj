@@ -1,6 +1,7 @@
 package com.vinidev.alfa.front.beans;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.application.FacesMessage;
@@ -15,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean(name = "SearchBean", eager = true)
-@SessionScoped
+@ApplicationScoped
 public class SearchBean {
 
     private static final Logger LOGGER = Logger.getLogger(SearchBean.class.getName());
@@ -151,13 +152,10 @@ public class SearchBean {
         // You can access the form fields using the getter methods (e.g., razaoSocial, cidade, situacao, data, endereco, telefone)
 
         // Clear the form fields after saving
-        razaoSocial = null;
-        cidade = null;
-        situacao = null;
-        data = null;
-        endereco = null;
-        telefone = null;
-
+        LOGGER.log(Level.INFO, "Updated properties: " + this.razaoSocial);
+        LOGGER.log(Level.INFO, "Updated properties: " + this.cidade);
+        LOGGER.log(Level.INFO, "Updated properties: " + this.situacao);
+        LOGGER.log(Level.INFO, "Updated properties: " + this.data);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Data saved successfully"));
     }
 }
