@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Search</title>
+</h:head>
+<h:body>
+   <h:form>
+       <h:outputLabel value="Razão Social:" />
+       <h:inputText value="" /> 
+       <h:outputLabel value="Cidade:" />
+       <h:inputText value="" />
+       <h:outputLabel value="Situação cadastral:" />
+       <h:inputText value="" />
+       <h:outputLabel value="Data da situação:" />
+       <h:inputText value="" />
+       <h:outputLabel value="Endereco:" />
+       <h:inputText value=" " />
+       <h:outputLabel value="Telefone:" />
+       <h:inputText value=" " />
+       <h:commandButton value="Submit" action="#{bean.search()}" />
+   </h:form>
+</h:body>
+</html>
+
