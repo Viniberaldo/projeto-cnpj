@@ -3,4 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
        bean-discovery-mode="all">
+    <managed-bean>
+        <managed-bean-name>searchBean</managed-bean-name>
+        <managed-bean-class>com.vinidev.alfa.front.beans.SearchBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>searchString</property-name>
+            <value>19131243000197</value>
+        </managed-property>
+    </managed-bean>
 </beans>
