@@ -7,17 +7,14 @@
         <title>Search Page</title>
     </h:head>
     <h:body>
-        <h1>TESTE</h1>
+        <h1>Aplicação Consulta CNPJ</h1>
         <f:view>
-        <h:form>
+        <h:form id="myForm" prependId="false">
             <h:outputLabel value="Digite o CNPJ:" />
             <h:inputText value="#{SearchBean.searchString}" />
             <br/>
             <h:commandButton value="Search"
                              action="#{SearchBean.search(SearchBean.searchString)}" />
-        </h:form>
-            <f:view>
-        <h:form id="myForm" prependId="false">
             <h:panelGrid columns="2">
                 <h:outputLabel value="Razão Social:" />
                 <h:inputText value="#{SearchBean.razaoSocial}" />
@@ -28,13 +25,12 @@
                 <h:outputLabel value="Data da situação:" />
                 <h:inputText value="#{SearchBean.data}" />
                 <h:outputLabel value="Endereco:" />
-                <h:inputText value=" " />
+                <h:inputText value="#{SearchBean.endereco}" />
                 <h:outputLabel value="Telefone:" />
-                <h:inputText value=" " />
+                <h:inputText value="#{SearchBean.telefone}" />
             </h:panelGrid>
             <h:commandButton value="Salvar" action="#{SearchBean.save()}" />
         </h:form>
-        </f:view>
         </f:view>
     </h:body>
 </html>

@@ -13,6 +13,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.client5.http.protocol.HttpClientContext;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.protocol.HttpContext;
+import org.json.JSONObject;
 
 @ManagedBean(name = "SearchBean", eager = true)
 @ApplicationScoped
@@ -90,6 +98,7 @@ public class SearchBean {
 
     public void search(String searchString) throws MalformedURLException, IOException {
         LOGGER.log(Level.INFO, "Searching for: {0}", searchString);
+        this.searchString = searchString;
         String endpoint = "http://localhost:8080/api-data/" + searchString;
 
         URL url = new URL(endpoint);
@@ -126,10 +135,12 @@ public class SearchBean {
                                 setSituacao(value);
                             case "Data Situacao Cadastral" ->
                                 setData(value);
+                            case "cnpj" ->
+                                setSearchString(value);
                         }
                     }
                 }
-                LOGGER.log(Level.INFO, "Updated properties: " + this.cidade);
+                LOGGER.log(Level.INFO, "Updated properties: " + apiResponse);
             } else {
                 // Handle empty or invalid response
                 FacesContext.getCurrentInstance().addMessage(
@@ -144,15 +155,39 @@ public class SearchBean {
         }
     }
 
-    public void save() {
-        // Save the form data to the database or perform any other necessary actions
-        // You can access the form fields using the getter methods (e.g., razaoSocial, cidade, situacao, data, endereco, telefone)
+    public void save() throws IOException {
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost("http://localhost:8080/api-data/save");
 
-        // Clear the form fields after saving
-        LOGGER.log(Level.INFO, "Updated properties: " + this.razaoSocial);
-        LOGGER.log(Level.INFO, "Updated properties: " + this.cidade);
-        LOGGER.log(Level.INFO, "Updated properties: " + this.situacao);
-        LOGGER.log(Level.INFO, "Updated properties: " + this.data);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Data saved successfully"));
+        Company company = new Company();
+        company.setRazaoSocial(this.razaoSocial);
+        company.setCnpj(this.searchString);
+        company.setCity(this.cidade);
+        company.setStatus(this.situacao);
+        company.setStatusDate(this.data);
+        company.setAddress(this.endereco);
+        company.setPhone(this.telefone);
+
+        JSONObject json = new JSONObject();
+        json.put("cnpj", this.searchString);
+        json.put("razaoSocial", this.razaoSocial);
+        json.put("city", this.cidade);
+        json.put("status", this.situacao);
+        json.put("statusDate", this.data);
+        json.put("address", this.endereco);
+        json.put("phone", this.telefone);
+
+        StringEntity entity = new StringEntity(json.toString());
+        LOGGER.log(Level.INFO, "Json enviado: " + json.toString());
+        post.setEntity(entity);
+        post.setHeader("Accept", "application/json");
+        post.setHeader("Content-type", "application/json");
+
+        HttpContext context = HttpClientContext.create();
+        CloseableHttpResponse response = client.execute(post, context);
+
+        if (response.getCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getCode());
+        }
     }
 }

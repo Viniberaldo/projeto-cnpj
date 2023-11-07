@@ -1,5 +1,7 @@
 package com.cnpj.alfa.service;
 
+import com.cnpj.alfa.model.Company;
+import com.cnpj.alfa.repository.CompanyRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +19,11 @@ public class AlfaService {
     private static final String BRASIL_API_CNPJ_URL
             = "https://brasilapi.com.br/api/cnpj/v1/{cnpj}";
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final CompanyRepository companyRepository;
+
+    public AlfaService(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     /**
      * Documentar
@@ -30,5 +37,14 @@ public class AlfaService {
                 String.class, cnpj);
         JsonNode jsonNode = objectMapper.readTree(data);
         return jsonNode;
+    }
+
+    /**
+     * DOCUMENTAR
+     * @param company
+     * @return
+     */
+    public Company saveCompany(Company company) {
+        return companyRepository.save(company);
     }
 }
