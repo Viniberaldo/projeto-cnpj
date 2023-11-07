@@ -2,7 +2,6 @@ package com.vinidev.alfa.front.beans;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -131,8 +130,6 @@ public class SearchBean {
                     }
                 }
                 LOGGER.log(Level.INFO, "Updated properties: " + this.cidade);
-                // Redirect to search.xhtml after processing the API response
-                FacesContext.getCurrentInstance().getExternalContext().redirect("search.xhtml?faces-redirect=true");
             } else {
                 // Handle empty or invalid response
                 FacesContext.getCurrentInstance().addMessage(

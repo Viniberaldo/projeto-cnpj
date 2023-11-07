@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Search Page</title>
     </h:head>
     <h:body>
         <h1>TESTE</h1>
+        <f:view>
         <h:form>
             <h:outputLabel value="Digite o CNPJ:" />
             <h:inputText value="#{SearchBean.searchString}" />
@@ -14,6 +16,26 @@
             <h:commandButton value="Search"
                              action="#{SearchBean.search(SearchBean.searchString)}" />
         </h:form>
+            <f:view>
+        <h:form id="myForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Razão Social:" />
+                <h:inputText value="#{SearchBean.razaoSocial}" />
+                <h:outputLabel value="Cidade:" />
+                <h:inputText value="#{SearchBean.cidade}" />
+                <h:outputLabel value="Situação cadastral:" />
+                <h:inputText value="#{SearchBean.situacao}" />
+                <h:outputLabel value="Data da situação:" />
+                <h:inputText value="#{SearchBean.data}" />
+                <h:outputLabel value="Endereco:" />
+                <h:inputText value=" " />
+                <h:outputLabel value="Telefone:" />
+                <h:inputText value=" " />
+            </h:panelGrid>
+            <h:commandButton value="Salvar" action="#{SearchBean.save()}" />
+        </h:form>
+        </f:view>
+        </f:view>
     </h:body>
 </html>
 
