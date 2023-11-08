@@ -9,27 +9,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * DOCUMENTAR
- *
- * @author viniberaldo
+ * Classe de serviço da aplicação
  */
 @Service
 public class AlfaService {
 
+    /**
+     * URL da apli para busca de informações
+     */
     private static final String BRASIL_API_CNPJ_URL
             = "https://brasilapi.com.br/api/cnpj/v1/{cnpj}";
+
+    /**
+     * Classe que mapeia objetos e facilita a leitura do Json de resposta da api
+     */
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    /**
+     * Classe que realiza transações com banco de dados
+     */
     private final CompanyRepository companyRepository;
 
+    /**
+     * Construtor da classe
+     *
+     * @param companyRepository Classe que implementa os métodos para
+     * persistência no banco de dados
+     */
     public AlfaService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 
     /**
-     * Documentar
+     * Método que busca um cnpj através de uma API
      *
-     * @param cnpj
-     * @return
+     * @param cnpj número cnpj o qual se deseja informações
+     *
+     * @return JsonNode com as informações recebidas da api
      */
     public JsonNode getApiData(String cnpj) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
@@ -40,9 +56,11 @@ public class AlfaService {
     }
 
     /**
-     * DOCUMENTAR
-     * @param company
-     * @return
+     * Método que persiste a entidade company no banco de dados.
+     *
+     * @param company entidade que será persistida no banco de dados
+     *
+     * @return a entidade persistida
      */
     public Company saveCompany(Company company) {
         return companyRepository.save(company);
