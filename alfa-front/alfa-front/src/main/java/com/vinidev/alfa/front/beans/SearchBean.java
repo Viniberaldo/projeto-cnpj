@@ -189,5 +189,9 @@ public class SearchBean {
         if (response.getCode() != 200) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getCode());
         }
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Sucesso", "Os dados foram salvos com sucesso.");
+        facesContext.addMessage(null, message);
     }
 }
