@@ -1,0 +1,40 @@
+version: '3'
+services:
+ frontend:
+   build:
+     context: ./alfa-front/alfa-front/target
+   ports:
+     - "8081:8081"
+   depends_on:
+     - backend
+   networks:
+     - mynet
+
+ backend:
+   build:
+     context: ./alfa/target
+   ports:
+     - "8080:8080"
+   depends_on:
+     - database
+   environment:
+     - DATABASE_URL=jdbc:postgresql://database:5432/dbempresas
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+   networks:
+     - mynet
+
+ database:
+   image: postgres:latest
+   ports:
+     - "5432:5432"
+   environment:
+     POSTGRES_PASSWORD: postgres
+     POSTGRES_DB: dbempresas
+   networks:
+     - mynet
+
+networks:
+ mynet:
+   name: my-shared-db-network
+
