@@ -13,30 +13,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author viniberaldo
+ * Controlador da aplicação
  */
 @RestController
 public class AlfaController {
 
+    /**
+     * Classe de serviço da aplicação
+     */
     @Autowired
     private final AlfaService alfaService;
 
     /**
-     * documentar
+     * Construtor do controlador
      *
      * @param alfaService
+     *   Classe de serviço utilizada no controlador
      */
     public AlfaController(AlfaService alfaService) {
         this.alfaService = alfaService;
     }
 
     /**
-     * Documentar
+     * Método que faz a busca de um CNPJ na api BRASIL API e retorna o resultado
+     * com informações pré-definidas no método.
      *
      * @param cnpj
+     *   número do cnpj usado na busca
+     *
      * @return
+     *   String com os dados obtidos do JSON de resposta da api Brasil API
+     *
      * @throws com.fasterxml.jackson.core.JsonProcessingException
+     *   Exceção ao processar o JSON recebido
      */
     @GetMapping("/api-data/{cnpj}")
     public String getApiData(@PathVariable String cnpj) throws
@@ -52,9 +61,13 @@ public class AlfaController {
     }
 
     /**
+     * Método que persiste a entidade Company no banco de dados.
      *
      * @param data
+     *  objeto do tipo Company que será persistido no banco de dados
+     *
      * @return
+     *  ResponseEntity com o resultado da operação.
      */
     @PostMapping("/api-data/save")
     public ResponseEntity<Void> saveData(@RequestBody Company data) {
