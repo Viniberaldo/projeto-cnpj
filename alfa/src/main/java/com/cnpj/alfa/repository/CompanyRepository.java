@@ -5,8 +5,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- *
- * @author viniberaldo
+ * Interface que implementa os métodos para operações com banco de dados.
  */
 public interface CompanyRepository extends JpaRepository<Company, UUID> {
 
