@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- *
- * @author viniberaldo
+ * Classe que representa a entidade company que será usada para persistir dados
+ * no banco de dados.
  */
 @Entity
 @Table(name = "company")
