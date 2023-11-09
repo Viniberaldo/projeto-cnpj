@@ -4,6 +4,16 @@ Projeto para exercício de integração entre frontend, backend e containers.
 
 ---
 
+# Visão Geral
+
+A aplicação frontend contruída com JSF, envia uma requisição HTTP para a aplicação backend, que é construída com o framework Spring. O backend, por sua vez, utiliza a [Brasil API](https://www.brasilapi.com.br/) para buscar informações correspondentes ao parâmetro inserido no frontend. A Brasil API retorna o CNPJ e outras informações detalhadas sobre a empresa pesquisada.
+
+As informações recuperadas são então exibidas na página do frontend. Além disso, a aplicação frontend permite ao usuário adicionar manualmente informações complementares, como endereço e telefone, quando necessário.
+
+Após o preenchimento dessas informações adicionais, o usuário pode clicar no botão "Salvar". Nesse momento, o frontend faz outra chamada ao backend, que recebe os dados via HTTP e os persiste no banco de dados (instância de postgres em container) para uso futuro.
+
+Este fluxo de ação permite que a arquitetura de microsserviços (de maneira bem simplificada) seja estudada e experimentada.
+
 # Guia de Configuração e Uso da Aplicação
 
 Este é um guia passo a passo para configurar, implantar e usar a aplicação alfa. Certifique-se de seguir todas as instruções para uma experiência sem problemas.
