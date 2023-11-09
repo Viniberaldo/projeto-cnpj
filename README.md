@@ -20,6 +20,8 @@ Este é um guia passo a passo para configurar, implantar e usar a aplicação al
 
 2. Configure o Tomcat para executar na porta 8180.
 
+3. Faça o deploy do projeto alfa-front-1.0-SNAPSHOT.war (localizado em /alfa-front/alfa-front/target) no Tomcat
+
 ## Configuração do Banco de Dados com Docker
 
 1. Utilize Docker para subir um container com o PostgreSQL. Você pode usar o seguinte comando:
@@ -32,7 +34,7 @@ Este é um guia passo a passo para configurar, implantar e usar a aplicação al
 
 1. Certifique-se de ter o JDK 17 ou superior instalado em sua máquina.
 
-2. Execute o arquivo alfa-0.0.1-SNAPSHOT.jar com o seguinte comando:
+2. Execute o arquivo alfa-0.0.1-SNAPSHOT.jar (localizado em alfa/target/) com o seguinte comando:
 
     ```shell
     java -jar alfa-0.0.1-SNAPSHOT.jar
