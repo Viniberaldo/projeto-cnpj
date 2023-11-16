@@ -1,5 +1,6 @@
 package com.vinidev.alfa.front.beans;
 
+import io.github.pixee.security.BoundedLineReader;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -111,7 +112,7 @@ public class SearchBean {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuilder content = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 content.append(inputLine);
             }
 
