@@ -6,7 +6,7 @@ Projeto para exercício de integração entre frontend, backend e containers.
 
 # Visão Geral
 
-A aplicação frontend contruída com JSF, envia uma requisição HTTP para a aplicação backend, que é construída com o framework Spring. O backend, por sua vez, utiliza a [Brasil API](https://www.brasilapi.com.br/) para buscar informações correspondentes ao parâmetro inserido no frontend. A Brasil API retorna o CNPJ e outras informações detalhadas sobre a empresa pesquisada.
+A aplicação frontend construída com JSF, envia uma requisição HTTP para a aplicação backend, que é construída com o framework Spring. O backend, por sua vez, utiliza a [Brasil API](https://www.brasilapi.com.br/) para buscar informações correspondentes ao parâmetro inserido no frontend. A Brasil API retorna o CNPJ e outras informações detalhadas sobre a empresa pesquisada.
 
 As informações recuperadas são então exibidas na página do frontend. Além disso, a aplicação frontend permite ao usuário adicionar manualmente informações complementares, como endereço e telefone, quando necessário.
 
