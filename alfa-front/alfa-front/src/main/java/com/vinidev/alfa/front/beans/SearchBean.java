@@ -1,6 +1,8 @@
 package com.vinidev.alfa.front.beans;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -102,7 +104,7 @@ public class SearchBean {
         this.searchString = searchString;
         String endpoint = "http://localhost:8080/api-data/" + searchString;
 
-        URL url = new URL(endpoint);
+        URL url = Urls.create(endpoint, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json");
